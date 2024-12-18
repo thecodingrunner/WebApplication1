@@ -25,5 +25,18 @@ namespace WebApplication1.Controllers
             }
             return Ok(books);
         }
+
+        [HttpGet]
+        [Route("[controller]/{id}")]
+        public ActionResult<Book> GetBookById(int id) 
+        {
+            var book = _bookService.GetBookById(id);
+
+            if (book == null) 
+            {
+                return NotFound($"Book with Id {id} not found");
+            }
+            return Ok(book);
+        }
     }
 }
