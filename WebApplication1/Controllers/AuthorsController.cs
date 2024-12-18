@@ -19,6 +19,10 @@ namespace WebApplication1.Controllers
         public IActionResult GetAuthors()
         {
             var authors = _authorService.GetAllAuthors();
+            if (authors == null)
+            {
+                return NotFound($"Authors do not exist.");
+            }
             return Ok(authors);
         }
 
@@ -42,6 +46,21 @@ namespace WebApplication1.Controllers
             {
                 _authorService.AddAuthor(author);
                 return Ok("New author added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("[controller]/{id}")]
+        public ActionResult DeleteAuthor(int id)
+        {
+            try
+            {
+                _authorService.DeleteAuthor(id);
+                return Ok("Deleted author successfully");
             }
             catch (Exception ex)
             {

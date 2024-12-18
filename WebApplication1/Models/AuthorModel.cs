@@ -11,8 +11,17 @@ namespace WebApplication1.Models
         public void AddAuthor(Author author)
         {
             var authors = FetchAllAuthors();
+            author.Id = authors.Select(author => author.Id).Max() + 1;
             authors.Add(author);
             var json = JsonSerializer.Serialize(authors);
+            File.WriteAllText(_authorsPath, json);
+        }
+
+        public void DeleteAuthor(int id)
+        {
+            var authors = FetchAllAuthors();
+            List<Author> newAuthorsList = authors.Where(author => author.Id != id).ToList();
+            var json = JsonSerializer.Serialize(newAuthorsList);
             File.WriteAllText(_authorsPath, json);
         }
 

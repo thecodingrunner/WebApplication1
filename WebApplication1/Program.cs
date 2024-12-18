@@ -13,6 +13,8 @@ namespace WebApplication1
 
             builder.Services.AddScoped<AuthorService>();
             builder.Services.AddScoped<AuthorModel>();
+            builder.Services.AddScoped<BookService>();
+            builder.Services.AddScoped<BookModel>();
 
             var app = builder.Build();
 

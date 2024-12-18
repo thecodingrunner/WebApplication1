@@ -16,6 +16,11 @@ namespace WebApplication1.Services
             _authorModel.AddAuthor(author);
         }
 
+        public void DeleteAuthor(int id)
+        {
+            _authorModel.DeleteAuthor(id);
+        }
+
         public List<Author> GetAllAuthors()
         {
             return _authorModel.FetchAllAuthors();
