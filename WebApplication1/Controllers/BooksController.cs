@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Services;
 using WebApplication1.Classes;
+using System.Text.Json;
 
 namespace WebApplication1.Controllers
 {
@@ -37,6 +38,18 @@ namespace WebApplication1.Controllers
                 return NotFound($"Book with Id {id} not found");
             }
             return Ok(book);
+        }
+
+        [HttpPost]
+        [Route("[controller]")]
+        public ActionResult<Book> PostBook(Book book)
+        {
+            Book addedBook = _bookService.AddBook(book)!;
+            if (addedBook == null)
+            {
+                return NotFound($"Books could not be added.");
+            }
+            return Created("Created", addedBook);
         }
     }
 }

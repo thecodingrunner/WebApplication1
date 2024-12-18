@@ -6,15 +6,18 @@ namespace WebApplication1.Services
     public class BookService
     {
         private readonly BookModel _bookModel;
-        public BookService(BookModel bookModel)
+        private readonly AuthorModel _authorModel;
+        public BookService(BookModel bookModel, AuthorModel authorModel)
         {
             _bookModel = bookModel;
+            _authorModel = authorModel;
         }
 
-        public Book? AddBook(Book book, AuthorService authorService)
+        public Book? AddBook(Book book)
         {
             var authorToFind = book.Author;
-            var authors = authorService.GetAllAuthors();
+            var authors = _authorModel.FetchAllAuthors();
+            Console.WriteLine(authors);
 
             Author? foundAuthor = authors.Where(author => author.Name == authorToFind).FirstOrDefault();
 
