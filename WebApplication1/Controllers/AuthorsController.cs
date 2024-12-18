@@ -45,7 +45,7 @@ namespace WebApplication1.Controllers
             try
             {
                 _authorService.AddAuthor(author);
-                return Ok("New author added successfully.");
+                return Created("New author added successfully.", author);
             }
             catch (Exception ex)
             {

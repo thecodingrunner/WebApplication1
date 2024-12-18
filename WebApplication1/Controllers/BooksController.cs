@@ -49,7 +49,22 @@ namespace WebApplication1.Controllers
             {
                 return NotFound($"Books could not be added.");
             }
-            return Created("Created", addedBook);
+            return Created("New author added successfully.", addedBook);
+        }
+
+        [HttpDelete]
+        [Route("[controller]/{id}")]
+        public ActionResult DeleteBook(int id)
+        {
+            try
+            {
+                _bookService.DeleteBook(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

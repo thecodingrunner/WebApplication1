@@ -30,5 +30,13 @@ namespace WebApplication1.Models
             File.WriteAllText(_booksPath, json);
             return book;
         }
+
+        public void DeleteBook(int id)
+        {
+            var books = FetchAllBooks();
+            List<Book> newBooksList = books.Where(book => book.Id != id).ToList();
+            var json = JsonSerializer.Serialize(newBooksList);
+            File.WriteAllText(_booksPath, json);
+        }
     }
 }

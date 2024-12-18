@@ -39,5 +39,10 @@ namespace WebApplication1.Services
         {
             return _bookModel.FetchBookById(id);
         }
+
+        public void DeleteBook(int id)
+        {
+            _bookModel.DeleteBook(id);
+        }
     }
 }
