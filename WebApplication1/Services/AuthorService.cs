@@ -11,9 +11,19 @@ namespace WebApplication1.Services
             _authorModel = authorModel;
         }
 
+        public void AddAuthor(Author author)
+        {
+            _authorModel.AddAuthor(author);
+        }
+
         public List<Author> GetAllAuthors()
         {
             return _authorModel.FetchAllAuthors();
+        }
+
+        public Author? GetAuthorById(int id)
+        {
+            return _authorModel.FetchAuthorById(id);
         }
     }
 }
