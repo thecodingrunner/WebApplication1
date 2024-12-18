@@ -44,5 +44,10 @@ namespace WebApplication1.Services
         {
             _bookModel.DeleteBook(id);
         }
+
+        public List<Book> GetBooksByAuthorId(int authorId)
+        {
+            return _bookModel.GetBooksByAuthorId(authorId);
+        }
     }
 }

@@ -66,5 +66,17 @@ namespace WebApplication1.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("[controller]/author/{authorId}")]
+        public ActionResult<List<Book>>? GetBooksByAuthorId(int authorId)
+        {
+            List<Book> books = _bookService.GetBooksByAuthorId(authorId);
+            if (books == null)
+            {
+                return NotFound($"There are no books by the given author.");
+            }
+            return Ok(books);
+        }
     }
 }
